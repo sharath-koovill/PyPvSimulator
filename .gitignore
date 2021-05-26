@@ -1,3 +1,21 @@
+#meter
+meter/log/
+meter/__pycache__/
+
+#pv simulator
+pvsimulator/log/
+pvsimulator/__pycache__/
+
+#csv
+csv_storage
+
+.idea/
+
+#rabbitmq logs and config
+rabbitmqbroker/data/
+rabbitmqbroker/etc/
+rabbitmqbroker/logs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
