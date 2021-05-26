@@ -1,13 +1,14 @@
 #meter
-meter/log/
 meter/__pycache__/
 
 #pv simulator
-pvsimulator/log/
 pvsimulator/__pycache__/
 
+#log
+log/
+
 #csv
-csv_storage
+csv_storage/
 
 .idea/
 
