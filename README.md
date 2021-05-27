@@ -1,5 +1,8 @@
 # PyPvSimulator
 
+## Description
+An application which generates simulated PV (photovoltaic) power values (in kW).
+
 ## Meter
 Meter produces power in Watts (W) from 0 to 9000W. This mocks a regular home power consumption.
 #### Assumption: 
@@ -17,11 +20,15 @@ Broker used here is RabbitMQ
 
 ## Requirements
 ##### 1. RabbitMQ using Docker(assuming docker is installed)
-  - docker run -d --name some-rabbit -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 15672:15672 rabbitmq:3-alpine
-  - docker container exec -it some-rabbit rabbitmq-plugins enable rabbitmq_management
+```
+  docker run -d --name some-rabbit -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 15672:15672 rabbitmq:3-alpine
+  docker container exec -it some-rabbit rabbitmq-plugins enable rabbitmq_management
+```
   
 ##### 2. Python >= 3.7 and aio-pika
-  - pip install aio-pika
+```
+  pip install aio-pika
+```
   
 ## How to run locally
 #### Meter Module
@@ -34,7 +41,17 @@ python pypvsimulator/pvsimulator/__main__.py
 ```
 
 #### Output
-The output can be viewed in the CSV file generated in csv_storage/ directory.
+The output can be viewed in the CSV file generated in csv_storage/ directory. The sample CSV file name will be HOUSE_A_20210527.csv and the content will look like below.
+Fields meter_power_value, PV_power_value and sum_of_powers are all in Watts. 
+```
+timestamp,meter_power_value,PV_power_value,sum_of_powers
+1622119421.561638,3434,2396,5830
+1622123496.272077,3966,2820,6786
+1622123770.39747,2349,91,2440
+1622124063.509059,7595,606,8201
+1622124126.941191,7488,905,8393
+```
+
 
 #### Logs
 The logs are saved in the log/ directory. A rotate file handler log is used for both Meter and PV Simulator. Meter logs are named meter.log and PV Simulator logs are pv_simulator.log and this is due to the fact that Meter and PV simulator will be deployed at different location. Both Meter and PV Simulator module can create log/ directory automatically. The default log level is INFO.
