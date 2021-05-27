@@ -36,7 +36,7 @@ BROKER_ADDRESS = "amqp://guest:guest@127.0.0.1/"
 EXCHANGE_NAME = "pv_simulator_exchange"
 QUEUE_NAME = "pv_simulator_queue"
 PV_MIN = 0
-PV_MAX = 9000
+PV_MAX = 9000(Meter) and 4000(PV Simulator)
 PRODUCER_TIME_INTERVAL = 10
 CONSUMER_TIME_INTERVAL = 10
 ```
