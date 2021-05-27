@@ -1,7 +1,7 @@
 # PyPvSimulator
 
 ## Description
-An application which generates simulated PV (photovoltaic) power values (in kW).
+An application in which multiple Meters generates power values in Watts and sends it to a single simulated PV cell (photovoltaic) which also generates power values in Watts and finally stores the power value generated from the Meters and self to a CSV file. The Meters publishes the power values to a Broker queue after every time interval and the PV simulator subscribes to this Broker queue and receives the power value for further processing.
 
 ## Meter
 Meter produces power in Watts (W) from 0 to 9000W. This mocks a regular home power consumption.
@@ -29,7 +29,18 @@ Broker used here is RabbitMQ
 ```
   pip install aio-pika
 ```
-  
+
+## Configs
+```
+BROKER_ADDRESS = "amqp://guest:guest@127.0.0.1/"
+EXCHANGE_NAME = "pv_simulator_exchange"
+QUEUE_NAME = "pv_simulator_queue"
+PV_MIN = 0
+PV_MAX = 9000
+PRODUCER_TIME_INTERVAL = 10
+CONSUMER_TIME_INTERVAL = 10
+```
+
 ## How to run locally
 #### Meter Module
 ```python
@@ -41,7 +52,7 @@ python pypvsimulator/pvsimulator/__main__.py
 ```
 
 #### Output
-The output can be viewed in the CSV file generated in csv_storage/ directory. The sample CSV file name will be HOUSE_A_20210527.csv and the content will look like below.
+The output can be viewed in the CSV file generated in csv_storage/ directory. The directory csv_storage/ is created during runtime outside the PV simulator module. The sample CSV file name will be HOUSE_A_20210527.csv and the content will look like below.
 Fields meter_power_value, PV_power_value and sum_of_powers are all in Watts. 
 ```
 timestamp,meter_power_value,PV_power_value,sum_of_powers
