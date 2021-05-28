@@ -52,7 +52,7 @@ python pypvsimulator/pvsimulator/__main__.py
 ```
 
 #### Output
-The output can be viewed in the CSV file generated in csv_storage/ directory. The directory csv_storage/ is created during runtime outside the PV simulator module. The sample CSV file name will be HOUSE_A_20210527.csv and the content will look like below.
+The output can be viewed in the CSV file generated in csv_storage/ directory. The sample CSV file name will be HOUSE_A_20210527.csv and the content will look like below.
 Fields meter_power_value, PV_power_value and sum_of_powers are all in Watts. 
 ```
 timestamp,meter_power_value,PV_power_value,sum_of_powers
