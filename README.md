@@ -3,10 +3,33 @@
 ## Description
 An application in which multiple Meters generates power values in Watts and sends it to a single simulated PV cell (photovoltaic) which also generates power values in Watts and finally stores the power value generated from the Meters and self to a CSV file. The Meters publishes the power values to a Broker queue after every time interval and the PV simulator subscribes to this Broker queue and receives the power value for further processing.
 
+```
+┌──────────────────────────────┐
+│                              │
+│                              │
+│       ┌─────────────┐        │ publish
+│       │    Meter    ├────────┼───────────┐
+│       │   HOUSE A   │        │           │
+│       └─────────────┘        │           ▼
+│                              │      ┌──────────────┐              ┌──────────────┐
+│       ┌─────────────┐        │      │              │    subscribe │              │
+│       │    Meter    │   publish     │    BROKER    │◄─────────────┤  PV SIMULATOR│
+│       │   HOUSE B   ├────────┬─────►│   (RABBITMQ) │              │              │
+│       └─────────────┘        │      │              │              └──────┬───────┘
+│                              │      └──────────────┘                     │
+│       ┌─────────────┐        │           ▲                               ▼
+│       │    Meter    ├────────┼───────────┘                         ┌─────────────┐
+│       │   HOUSE C   │        │                                     │             │
+│       └─────────────┘        │  publish                            │  CSV FILE   │
+│                              │                                     │  STORAGE    │
+│       Neighbourhood          │                                     └─────────────┘
+└──────────────────────────────┘
+```
+
 ## Meter
 Meter produces power in Watts (W) from 0 to 9000W. This mocks a regular home power consumption.
 #### Assumption: 
-More than one house can send its meter power value if they are in a neighbourhood and hence i have used 3 houses HOUSE A, HOUSE B and HOUSE C which sends power values from its meter at the interval of 10 seconds to the Broker.
+More than one house can send its meter power value if they are in a neighbourhood and hence i have used 3 houses ie HOUSE A, HOUSE B and HOUSE C which sends power values from its meter at the interval of 10 seconds to the Broker.
 
 ## PhotoVoltaic Simulator
 PV simulator generates power in Watts (W) over a period of time. The result to be saved in a file with at least a timestamp, meter
