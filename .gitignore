@@ -8,7 +8,7 @@ pvsimulator/__pycache__/
 log/
 
 #csv
-csv_storage/
+csv_storage/*.csv
 
 .idea/
 
