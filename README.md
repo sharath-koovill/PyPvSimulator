@@ -95,12 +95,12 @@ Both Meter and PV Simulator module has a Dockerfile and requirements file. A doc
 
 ```
 cd pypvsimulator/meter/
-docker build .
-docker run <Image ID>
+docker build -t meter:v1.0 .
+docker run meter:v1.0
 
 cd pypvsimulator/pvsimulator/
-docker build .
-docker run <Image ID>
+docker build -t pvsimulator:v1.0 .
+docker run pvsimulator:v1.0
 ```
 
 ## How to run tests
