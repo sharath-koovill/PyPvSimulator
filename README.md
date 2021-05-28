@@ -85,6 +85,12 @@ timestamp,meter_power_value,PV_power_value,sum_of_powers
 1622124063.509059,7595,606,8201
 1622124126.941191,7488,905,8393
 ```
+##### RabbitMQ management interface
+http://localhost:15672/ or http://127.0.0.1:15672/
+```
+username: guest
+password: guest
+```
 
 
 #### Logs
